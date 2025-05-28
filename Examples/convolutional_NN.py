@@ -114,12 +114,12 @@ with torch.no_grad():
             pred = predictions[i]
             if(label == pred):
                 n_class_correct[label] += 1
-            n_class_samples += 1
+            n_class_samples[label] += 1
 
     acc = n_correct/n_samples * 100 #Percentage of correct predictions
     print(f'Overall Accuracy Test: {acc}%')
 
     print("Accuracy per class")
     for i in range(10): #Iterate through all clases: 10 is num classes
-        class_acc = n_class_correct[i] / n_class_samples[i]
+        class_acc = n_class_correct[i] / n_class_samples[i] * 100
         print(f'Accuracy of {classes[i]} : {class_acc}%')
