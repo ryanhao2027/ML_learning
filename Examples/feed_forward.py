@@ -104,7 +104,12 @@ with torch.no_grad():
 
         #Counting whether the output is correct
         #value, index
-        _, predictions = torch.max(outputs, 1)
+        #print("Output Probabilities: ", outputs[0])
+        sup, predictions = torch.max(outputs, 1)
+        #Max basically returns a tensor containing the max value and max index of the input tensor
+        #along a certain dimension, which is the second arg specified. It's not max of outputs and 1. 
+        #print("sup,", sup[0])
+        #print("Predict:", predictions[0])
         n_samples += labels.shape[0] #Adds 100 for every batch of test data
         #lables.shape[0] basically is the batch size
         n_correct += (predictions == labels).sum().item() #Add the number of correct predictions per batch
